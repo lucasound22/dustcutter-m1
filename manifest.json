@@ -1,7 +1,7 @@
 {
-  "name": "DUSTCUTTER M-1 PRO \u2014 Final Debug \u2014 Neon Pads \u2014 8 Roland Kits + 10 Loops \u2014 No External Samples Needed",
+  "name": "DUSTCUTTER M-1 PRO by Luca Marino Productions",
   "short_name": "DUSTCUTTER",
-  "description": "Zero-latency, neon pad grid, 8 Roland kits synthesized inside app 909/808/707/606/505/CR78/MELODIC/FX, 10 loops, save/recall .dust autosave, no external WAV needed \u2014 works offline instant load, DJ https://lucasound22.github.io/DJLUCA/ Contact lucasound@gmail.com",
+  "description": "Professional MPC \u2014 8 Roland kits 909/808/707/606/505/CR78/MELODIC/FX 10 loops save/recall .dust DJ https://lucasound22.github.io/DJLUCA/ Contact lucasound@gmail.com",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0A0A0E",
