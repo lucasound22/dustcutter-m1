@@ -1,62 +1,33 @@
 {
-  "name": "DUSTCUTTER M-1 PRO by Luca Marino Productions",
+  "id": "dustcutter-m1",
+  "name": "DUSTCUTTER M-1 PRO",
   "short_name": "DUSTCUTTER",
-  "description": "Professional MPC \u2014 8 Roland kits 909/808/707/606/505/CR78/MELODIC/FX 10 loops save/recall .dust DJ https://lucasound22.github.io/DJLUCA/ Contact lucasound@gmail.com",
-  "start_url": "./index.html",
+  "description": "Pocket drum machine and sampler by Luca Marino Productions: 128 pads, 8 classic kits, step sequencer, performance FX, sample chopping and WAV/MIDI export. Works offline.",
+  "start_url": "./?source=pwa",
+  "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
   "background_color": "#0A0A0E",
   "theme_color": "#0A0A0E",
-  "orientation": "any",
+  "lang": "en-AU",
+  "dir": "ltr",
+  "categories": ["music", "entertainment", "productivity"],
   "icons": [
-    {
-      "src": "./icons/icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "icons/icon-72.png", "sizes": "72x72", "type": "image/png" },
+    { "src": "icons/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "icons/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "icons/icon-144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "icons/icon-152.png", "sizes": "152x152", "type": "image/png" },
+    { "src": "icons/icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-384.png", "sizes": "384x384", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
-  "categories": [
-    "music",
-    "entertainment"
-  ],
-  "lang": "en"
+  "shortcuts": [
+    { "name": "Step sequencer", "short_name": "Sequencer", "url": "./?tab=seq", "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }] },
+    { "name": "Chop a sample", "short_name": "Chop", "url": "./?tab=chop", "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }] }
+  ]
 }
