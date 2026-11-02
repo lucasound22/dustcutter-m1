@@ -1,6 +1,6 @@
 # DUSTCUTTER M-1 PRO
 
-Pocket drum machine & sampler by **Luca Marino Productions** — 128 pads, 8 classic-inspired kits, 10 demo loops, step sequencer, performance FX, sample chopping, WAV/MIDI export. Installable, works offline on iPhone, iPad and desktop.
+Pocket drum machine & sampler by **Luca Marino Productions** — 256 pads across 16 kits (drums, bass, keys, synths, soul, world, FX + 4 user kits), layered step sequencer with 64 patterns and a full song mode, tempo- and key-aware sample chopping with drag-and-drop, performance FX, WAV / stems / MIDI export. Installable, works offline on iPhone, iPad and desktop.
 
 Live: https://lucasound22.github.io/dustcutter-m1/ · DJ sets: https://lucasound22.github.io/DJLUCA/ · lucasound@gmail.com
 
@@ -25,9 +25,11 @@ Bump `VERSION` in `sw.js` (then rebuild) (e.g. `v11`). Returning users see a “
 |---|---|
 | `index.html`, `css/app.css` | Shell and styles |
 | `js/dsp.js` | Synthesis voices (kicks, snares, hats, claps, perc, keys, FX) |
-| `js/kits.js` | 8 kits × 16 pads, 10 factory patterns, GM drum map |
+| `js/kits.js` | 12 factory kits + 4 user kits × 16 pads, 10 factory patterns, GM drum map |
+| `js/loops.js` | Four synthesised soul / funk demo loops to chop |
+| `js/chop.js` | Tempo, downbeat, transient and key detection for chopping |
 | `js/engine.js` | Web Audio chain, voice player, lookahead sequencer, offline bounce, WAV/MIDI |
-| `js/store.js` | IndexedDB autosave and projects, `.dust` import/export + validation |
+| `js/store.js` | IndexedDB autosave and projects, `.dust` / `.dustsong` import and export, validation |
 | `js/app.js` | Interface |
 | `sw.js`, `manifest.json` | Offline + install |
 
