@@ -1,6 +1,6 @@
 # DUSTCUTTER M-1 PRO
 
-Pocket drum machine & sampler by **Luca Marino Productions** — 256 pads across 16 kits (drums, bass, keys, synths, soul, world, FX + 4 user kits), layered step sequencer with 64 patterns and a full song mode, tempo- and key-aware sample chopping with drag-and-drop, performance FX, WAV / stems / MIDI export. Installable, works offline on iPhone, iPad and desktop.
+Pocket drum machine & sampler by **Luca Marino Productions** — 512 pads across 32 kits (16 factory kits + 16 user kits), programmable pad corners, a layered step sequencer with 64 patterns and full song mode, mic recording straight into the chopper, auto-cut of loops, one-shots and transients, tempo- and key-aware chopping with 12 loop styles, drag-and-drop, performance FX, WAV / stems / MIDI export. Installable, works offline on iPhone, iPad and desktop.
 
 Live: https://lucasound22.github.io/dustcutter-m1/ · DJ sets: https://lucasound22.github.io/DJLUCA/ · lucasound@gmail.com
 
@@ -25,8 +25,8 @@ Bump `VERSION` in `sw.js` (then rebuild) (e.g. `v11`). Returning users see a “
 |---|---|
 | `index.html`, `css/app.css` | Shell and styles |
 | `js/dsp.js` | Synthesis voices (kicks, snares, hats, claps, perc, keys, FX) |
-| `js/kits.js` | 12 factory kits + 4 user kits × 16 pads, 10 factory patterns, GM drum map |
-| `js/loops.js` | Four synthesised soul / funk demo loops to chop |
+| `js/kits.js` | 16 factory kits + 16 user kits × 16 pads, 10 demo patterns (bank D), GM drum map |
+| `js/loops.js` | Twelve synthesised loop styles to chop or drop in pre-chopped |
 | `js/chop.js` | Tempo, downbeat, transient and key detection for chopping |
 | `js/engine.js` | Web Audio chain, voice player, lookahead sequencer, offline bounce, WAV/MIDI |
 | `js/store.js` | IndexedDB autosave and projects, `.dust` / `.dustsong` import and export, validation |

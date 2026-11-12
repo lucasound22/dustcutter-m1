@@ -1,6 +1,6 @@
 /* DUSTCUTTER M-1 PRO — service worker (offline-first, auto-updating) */
 'use strict';
-const VERSION = 'v12';
+const VERSION = 'v14';
 const CACHE = 'dustcutter-m1-' + VERSION;
 const CORE = [
   './', './index.html', './manifest.json', 
