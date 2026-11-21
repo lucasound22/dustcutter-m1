@@ -419,6 +419,30 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
 .row .grow { flex: 1; min-width: 100px; }
 .btn.rec.big.on { background: var(--red); color: #fff; }
 
+/* ---------- v1.4.1: bigger pads, easier corners, less clutter (phones) ---------- */
+.pad .cn { width: 12px; height: 12px; border: 0; background: hsl(var(--h) 95% 62%); box-shadow: 0 0 8px hsl(var(--h) 95% 60% / .9); }
+.pad .cn.c0 { left: 6px; top: 6px; } .pad .cn.c1 { right: 6px; top: 6px; } .pad .cn.c2 { left: 6px; bottom: 6px; } .pad .cn.c3 { right: 6px; bottom: 6px; }
+.pad .pn { position: absolute; top: 5px; left: 50%; transform: translateX(-50%); font-size: 9px; opacity: .7; }
+.pad .nm { word-break: normal; overflow-wrap: break-word; hyphens: none; text-align: center; width: 100%; align-self: center; margin: auto 0; }
+.pad .nm.long { font-size: clamp(9px, 2.3vw, 12px); letter-spacing: -.01em; }
+.pad .bd { position: absolute; bottom: 5px; left: 0; right: 0; justify-content: center; min-height: 0; }
+.btn.mode .sh { display: none; }
+@media (max-width: 480px) {
+  .live { display: none; }
+  .btn.mode .l { display: none; } .btn.mode .sh { display: inline; }
+  .btn.mode { padding: 5px 8px; min-height: 30px; }
+  .padbar { gap: 5px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .padbar::-webkit-scrollbar { display: none; } .padbar .btn { flex: none; }
+  .saved { display: none; }
+  .pad { border-radius: 16px; } .pad .nm { font-size: 12px; }
+  .kit { min-height: 34px; }
+  body.dock .transport .grp:first-child { display: none; }
+  body.dock .pads { max-width: min(100%, 40dvh); gap: 6px; }
+  body.dock .pad .pn { display: block; font-size: 8px; } body.dock .pad .nm { font-size: 11px; } body.dock .pad .cn { width: 10px; height: 10px; }
+  .top { padding: 6px 12px; } .brand-t b { font-size: 12.5px; }
+}
+@media (max-width: 640px) { body.dock .pad { padding: 3px; } }
+.dockbar .btn { white-space: nowrap; padding: 6px 10px; min-height: 34px; } .dockbar .btn.play { min-width: 0; flex: 1; }
+
 </style>
 </head>
 <body>
@@ -3236,7 +3260,7 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
   var eng = new E.Engine();
   var clamp = E.clamp;
 
-  var VERSION = '1.4.0';
+  var VERSION = '1.4.1';
   var DONATE_URL = 'https://www.paypal.com/donate/?business=K4J63NP3HZRQQ&no_recurring=0&currency_code=AUD';
   var KIT_SHORT = ['A · 909', 'B · 808', 'C · 707', 'D · 606', 'E · DMX', 'F · CR-78', 'G · KEYS', 'H · FX', 'I · BASS', 'J · SYNTH', 'K · SOUL', 'L · WORLD', 'U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9', 'U10', 'U11', 'U12', 'U13', 'U14', 'U15', 'U16', 'M · CHORDS', 'N · SOUL CHORDS', 'O · PADS', 'P · LEADS'];
   function kn(b) { return (ui.kitNames && ui.kitNames[b]) || KIT_SHORT[b]; }
@@ -3378,7 +3402,7 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
         h('a', { class: 'btn sm donate', id: 'btn-donate', href: DONATE_URL, target: '_blank', rel: 'noopener noreferrer', 'aria-label': 'Donate to support DUSTCUTTER via PayPal' }, '♥', h('span', { class: 'hide-xs' }, ' DONATE')),
         h('button', { class: 'btn sm ghost', id: 'btn-help', 'aria-label': 'Quick start help', onclick: showHelp }, '?'),
         h('a', { class: 'btn sm ghost hide-s', href: 'https://lucasound22.github.io/DJLUCA/', target: '_blank', rel: 'noopener' }, 'DJ SETS'),
-        h('a', { class: 'btn sm hot', href: 'mailto:lucasound@gmail.com' }, 'CONTACT')));
+        h('a', { class: 'btn sm hot hide-xs', href: 'mailto:lucasound@gmail.com' }, 'CONTACT')));
 
     /* transport */
     refs.rec = h('button', { class: 'btn rec', id: 'btn-rec', 'aria-pressed': 'false', title: 'Record pad hits into the pattern (Shift+R)', onclick: toggleRec }, 'REC');
@@ -3472,7 +3496,7 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
     if (eng.seq.playing) requestWake(); else releaseWake();
   }
   function stopAll() { eng.stop(); eng.seq.rec = false; syncTransport(); }
-  function setDock(v) { ui.dock = v; document.body.classList.toggle('dock', v); try { localStorage.setItem('dc.dock', v ? '1' : '0'); } catch (e) { /* noop */ } syncPadBar(); }
+  function setDock(v) { ui.dock = v; document.body.classList.toggle('dock', v); try { localStorage.setItem('dc.dock2', v ? '1' : '0'); } catch (e) { /* noop */ } syncPadBar(); }
   function toggleRec() {
     eng.seq.rec = !eng.seq.rec; if (eng.seq.rec) eng._recSnap = false;
     if (eng.seq.rec && !eng.seq.playing) { eng.unlock(); eng.start(); requestWake(); }
@@ -3562,10 +3586,10 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
         'aria-label': 'Pad ' + (idx + 1) + ' ' + (p ? p.name : '') },
         h('span', { class: 'pn mono' }, idx + 1),
         thumb,
-        h('span', { class: 'nm mono' }, lv ? lvLabel(idx) : (empty ? (p.loading ? 'LOADING…' : 'EMPTY') : p.name)),
+        h('span', { class: 'nm mono' + (!lv && p.name.length > 9 ? ' long' : '') }, lv ? lvLabel(idx) : (empty ? (p.loading ? 'LOADING…' : 'EMPTY') : p.name)),
         h('span', { class: 'bd mono' }, !lv && p.user && !K.isUser(ui.bank) ? h('b', null, 'USER') : null, !lv && p.choke ? h('b', null, 'CK' + p.choke) : null, !lv && p.rev ? h('b', null, 'REV') : null, muted ? h('b', null, 'MUTE') : null),
         h('span', { class: 'vel' }),
-        lv ? null : [0, 1, 2, 3].map(function (ci) { return h('i', { class: 'cn c' + ci + (p.corners[ci] ? ' on' : '') }); }));
+        lv ? null : [0, 1, 2, 3].filter(function (ci) { return p.corners[ci]; }).map(function (ci) { return h('i', { class: 'cn c' + ci + ' on' }); }));
       if (thumb) drawThumb(thumb, id);
       padEls[idx] = el; refs.pads.appendChild(el);
     }
@@ -3600,7 +3624,8 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
   /** Which corner (0 TL, 1 TR, 2 BL, 3 BR) a touch landed in, or null for the centre / edges. */
   function zoneOf(e, el) {
     var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-    return Math.abs(x) > 0.2 && Math.abs(y) > 0.2 ? (y < 0 ? 0 : 2) + (x < 0 ? 0 : 1) : null;
+    // the middle 54% (a circle) is the centre sound; anywhere clearly toward a corner is that corner
+    return Math.abs(x) > 0.1 && Math.abs(y) > 0.1 && Math.hypot(x, y) > 0.27 ? (y < 0 ? 0 : 2) + (x < 0 ? 0 : 1) : null;
   }
 
   /** Single entry point for every pad hit (touch, mouse, keyboard, MIDI). zone = corner index or null. */
@@ -3770,12 +3795,15 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
     refs.pbDock.classList.add('narrow-only');
     return h('div', { class: 'padbar' }, refs.pbLv, refs.pbHalf, refs.pbMute, refs.pbErase, refs.pbCorners, refs.pbDock);
   }
+  function twoLabel(btn, l, sh) { btn.textContent = ''; btn.appendChild(h('span', { class: 'l' }, l)); btn.appendChild(h('span', { class: 'sh' }, sh)); }
   function syncPadBar() {
     if (!refs.pbLv) return;
     [[refs.pbLv, ui.lv.on], [refs.pbHalf, ui.half], [refs.pbMute, ui.padMute], [refs.pbErase, ui.erase], [refs.pbCorners, ui.corners], [refs.pbDock, ui.dock]].forEach(function (x) {
       x[0].classList.toggle('on', x[1]); x[0].setAttribute('aria-pressed', x[1]);
     });
-    refs.pbLv.textContent = ui.lv.on ? '16 LEVELS · ' + (eng.pads[ui.lv.src] ? eng.pads[ui.lv.src].name.toUpperCase().slice(0, 9) : '') : '16 LEVELS';
+    var nm = eng.pads[ui.lv.src] ? eng.pads[ui.lv.src].name.toUpperCase() : '';
+    twoLabel(refs.pbLv, ui.lv.on ? '16 LEVELS · ' + nm.slice(0, 9) : '16 LEVELS', ui.lv.on ? '16 · ' + nm.slice(0, 5) : '16 LVL');
+    twoLabel(refs.pbHalf, 'HALF', '½'); twoLabel(refs.pbMute, 'MUTE', 'MUTE'); twoLabel(refs.pbErase, 'ERASE', 'ERASE'); twoLabel(refs.pbCorners, 'CORNERS', 'CORNERS'); twoLabel(refs.pbDock, 'DOCK', 'DOCK');
   }
 
   /* ============================== tabs ============================== */
@@ -5536,8 +5564,8 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
     registerSW();
     try { if (localStorage.getItem('dc.autochop') === '0') ui.autoChop = false; } catch (e) { /* noop */ }
     var narrow = window.matchMedia && window.matchMedia('(max-width: 640px)').matches, dk = null;
-    try { dk = localStorage.getItem('dc.dock'); } catch (e) { /* noop */ }
-    setDock(dk == null ? narrow : (dk === '1' && narrow));
+    try { dk = localStorage.getItem('dc.dock2'); } catch (e) { /* noop */ }
+    setDock(dk === '1' && narrow);
     renderKits(); syncTransport();
     var q = new URLSearchParams(location.search), tab = q.get('tab');
     if (tab && TABS.some(function (t) { return t[0] === tab; })) ui.tab = tab;
@@ -5561,7 +5589,7 @@ body.carrying .pad, body.carrying .lane .ln, body.carrying .cz { outline: 1px da
     });
   }
 
-  window.DC = { eng: eng, ui: ui, chop: chop, micState: function () { return mic; }, setBank: setBank, showTab: showTab, armCarry: armCarry, clearCarry: clearCarry, triggerPad: triggerPad, chooseLoop: chooseLoop, applyProject: applyProject, snapshot: snapshot, version: VERSION };
+  window.DC = { eng: eng, ui: ui, zoneOf: zoneOf, chop: chop, micState: function () { return mic; }, setBank: setBank, showTab: showTab, armCarry: armCarry, clearCarry: clearCarry, triggerPad: triggerPad, chooseLoop: chooseLoop, applyProject: applyProject, snapshot: snapshot, version: VERSION };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
 
